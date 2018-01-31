@@ -1,6 +1,6 @@
 # go-slack-google-home
 
-A slack bot makes google home to speak text you posted.
+A slack bot to make Google Home speak text you posted.
 
 ## Init
 ```bash
