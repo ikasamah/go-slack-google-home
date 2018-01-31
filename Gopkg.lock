@@ -49,6 +49,12 @@
   revision = "4e527d9d808175f132f949523e640c699e4253bb"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/ikasamah/homecast"
+  packages = ["."]
+  revision = "73c47867fcb1c3345583a0a75bd24d24fd1d3578"
+
+[[projects]]
   name = "github.com/miekg/dns"
   packages = ["."]
   revision = "5364553f1ee9cddc7ac8b62dce148309c386695b"
@@ -86,6 +92,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8b4b63b084cbe40317ec17e36e161d39859d81b53aaba7361c3def9daa726b57"
+  inputs-digest = "047e748b73436f904df11e1b88e82f0aad5f4b05aac5b94c410fccef5bf34541"
   solver-name = "gps-cdcl"
   solver-version = 1

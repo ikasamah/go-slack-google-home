@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-multierror"
+	"github.com/ikasamah/homecast"
 	"github.com/nlopes/slack"
 )
 
@@ -14,7 +15,7 @@ type SlackBot struct {
 	client        *slack.Client
 	lang          string
 	connectedUser *slack.UserDetails
-	devices       []*CastDevice
+	devices       []*homecast.CastDevice
 }
 
 func NewSlackBot(client *slack.Client, lang string) *SlackBot {
@@ -34,7 +35,7 @@ func (s *SlackBot) Run(ctx context.Context) {
 		switch ev := msg.Data.(type) {
 		case *slack.ConnectedEvent:
 			s.connectedUser = ev.Info.User
-			s.devices = LookupGoogleHome()
+			s.devices = homecast.LookupGoogleHome()
 			log.Printf("[INFO] Connected: user_id=%s", s.connectedUser.ID)
 		case *slack.MessageEvent:
 			if err := s.handleMessageEvent(ctx, ev); err != nil {
