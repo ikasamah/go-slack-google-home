@@ -22,6 +22,18 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/hashicorp/errwrap"
+  packages = ["."]
+  revision = "7554cd9344cec97297fa6649b055a8c98c2a1e55"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/go-multierror"
+  packages = ["."]
+  revision = "b7773ae218740a7be65057fc60b366a49b538a44"
+
+[[projects]]
+  branch = "master"
   name = "github.com/hashicorp/go.net"
   packages = [
     "internal/iana",
@@ -71,15 +83,9 @@
   ]
   revision = "0ed95abb35c445290478a5348a7b38bb154135fd"
 
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/sync"
-  packages = ["errgroup"]
-  revision = "fd80eb99c8f653c847d294a001bdf2a3a6f768f5"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d1d2ac91711c31f364ec14dbb7dc7bae6409662b72dfdf641b6a41572feb71a9"
+  inputs-digest = "8b4b63b084cbe40317ec17e36e161d39859d81b53aaba7361c3def9daa726b57"
   solver-name = "gps-cdcl"
   solver-version = 1

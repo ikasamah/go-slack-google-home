@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/url"
 
 	"github.com/barnybug/go-cast"
@@ -43,6 +44,8 @@ func (g *CastDevice) Play(ctx context.Context, url *url.URL) error {
 		ContentType: "audio/mp3",
 		StreamType:  "BUFFERED",
 	}
+
+	log.Printf("[INFO] Load media: content_id=%s", mediaItem.ContentId)
 	_, err = media.LoadMedia(ctx, mediaItem, 0, true, nil)
 	return err
 }
@@ -50,7 +53,7 @@ func (g *CastDevice) Play(ctx context.Context, url *url.URL) error {
 func LookupGoogleHome() []*CastDevice {
 	entriesCh := make(chan *mdns.ServiceEntry, 4)
 
-	results := make([]*CastDevice, 0)
+	results := make([]*CastDevice, 0, 4)
 	go func() {
 		for entry := range entriesCh {
 			for _, field := range entry.InfoFields {

@@ -6,8 +6,8 @@ import (
 	"log"
 	"strings"
 
+	"github.com/hashicorp/go-multierror"
 	"github.com/nlopes/slack"
-	"golang.org/x/sync/errgroup"
 )
 
 type SlackBot struct {
@@ -54,12 +54,14 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 	}
 	body := strings.TrimPrefix(ev.Msg.Text, mention)
 
-	var eg errgroup.Group
+	var mErr *multierror.Error
 	for i := range s.devices {
-		device := s.devices[i]
-		eg.Go(func() error {
-			return device.Speak(ctx, body, s.lang)
-		})
+		go func(i int) {
+			if err := s.devices[i].Speak(ctx, body, s.lang); err != nil {
+				log.Printf("[ERROR] Failed to make device speak: %s", err)
+				mErr = multierror.Append(mErr, err)
+			}
+		}(i)
 	}
-	return eg.Wait()
+	return mErr
 }

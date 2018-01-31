@@ -10,7 +10,6 @@ import (
 func main() {
 	token := flag.String("token", "", "API token for slack")
 	lang := flag.String("lang", "en", "Language to speak")
-
 	flag.Parse()
 
 	ctx := context.Background()
