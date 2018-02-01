@@ -64,5 +64,10 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 			}
 		}(i)
 	}
-	return mErr
+
+	if mErr != nil {
+		return mErr
+	}
+	msgRef := slack.NewRefToMessage(ev.Channel, ev.Timestamp)
+	return s.client.AddReaction("sound", msgRef)
 }
