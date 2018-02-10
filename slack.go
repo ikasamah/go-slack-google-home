@@ -6,9 +6,9 @@ import (
 	"log"
 	"strings"
 
-	"github.com/hashicorp/go-multierror"
 	"github.com/ikasamah/homecast"
 	"github.com/nlopes/slack"
+	"golang.org/x/sync/errgroup"
 )
 
 type SlackBot struct {
@@ -55,21 +55,34 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 	}
 	body := strings.TrimPrefix(ev.Msg.Text, mention)
 
-	var mErr *multierror.Error
-	for i := range s.devices {
-		go func(i int) {
-			device := s.devices[i]
-			log.Printf("[INFO] Attempting to make device speak: [%s]%s", device.AddrV4, device.Name)
-			if err := device.Speak(ctx, body, s.lang); err != nil {
-				log.Printf("[ERROR] Failed to make device speak: %s", err)
-				mErr = multierror.Append(mErr, err)
-			}
-		}(i)
+	if err := s.speak(ctx, body); err != nil {
+		// Reload device, because address may have changed according to DHCP.
+		log.Printf("[WARN] An error occurred in speak. Attempt to reload devices just now. err: %s", err)
+		if err := s.addReaction(ev, "warning"); err != nil {
+			return err
+		}
+		s.devices = homecast.LookupGoogleHome()
+		if err := s.speak(ctx, body); err != nil {
+			s.addReaction(ev, "no_entry_sign")
+			return err
+		}
 	}
+	return s.addReaction(ev, "sound")
+}
 
-	if mErr != nil {
-		return mErr
+func (s *SlackBot) speak(ctx context.Context, body string) error {
+	var eg errgroup.Group
+	for i := range s.devices {
+		device := s.devices[i]
+		eg.Go(func() error {
+			log.Printf("[INFO] Attempting to make device speak: [%s]%s", device.AddrV4, device.Name)
+			return device.Speak(ctx, body, s.lang)
+		})
 	}
+	return eg.Wait()
+}
+
+func (s *SlackBot) addReaction(ev *slack.MessageEvent, emojiName string) error {
 	msgRef := slack.NewRefToMessage(ev.Channel, ev.Timestamp)
-	return s.client.AddReaction("sound", msgRef)
+	return s.client.AddReaction(emojiName, msgRef)
 }
