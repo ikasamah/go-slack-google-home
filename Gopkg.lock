@@ -17,8 +17,8 @@
 [[projects]]
   name = "github.com/gogo/protobuf"
   packages = ["proto"]
-  revision = "342cbe0a04158f6dcb03ca0079991a51a4248c02"
-  version = "v0.5"
+  revision = "1adfc126b41513cc696b209667c8656ea7aac67c"
+  version = "v1.0.0"
 
 [[projects]]
   branch = "master"
@@ -52,7 +52,7 @@
   branch = "master"
   name = "github.com/ikasamah/homecast"
   packages = ["."]
-  revision = "73c47867fcb1c3345583a0a75bd24d24fd1d3578"
+  revision = "796cc8afb0b0143047b26d7d3aafb6da8357c805"
 
 [[projects]]
   name = "github.com/miekg/dns"
@@ -73,7 +73,7 @@
     "ed25519",
     "ed25519/internal/edwards25519"
   ]
-  revision = "1875d0a70c90e57f11972aefd42276df65e895b9"
+  revision = "5119cf507ed5294cc409c092980c7497ee5d6fd2"
 
 [[projects]]
   branch = "master"
@@ -87,7 +87,7 @@
     "ipv6",
     "websocket"
   ]
-  revision = "0ed95abb35c445290478a5348a7b38bb154135fd"
+  revision = "f5dfe339be1d06f81b22525fe34671ee7d2c8904"
 
 [solve-meta]
   analyzer-name = "dep"

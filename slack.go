@@ -58,7 +58,9 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 	var mErr *multierror.Error
 	for i := range s.devices {
 		go func(i int) {
-			if err := s.devices[i].Speak(ctx, body, s.lang); err != nil {
+			device := s.devices[i]
+			log.Printf("[INFO] Attempting to make device speak: [%s]%s", device.AddrV4, device.Name)
+			if err := device.Speak(ctx, body, s.lang); err != nil {
 				log.Printf("[ERROR] Failed to make device speak: %s", err)
 				mErr = multierror.Append(mErr, err)
 			}
