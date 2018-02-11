@@ -22,18 +22,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/hashicorp/errwrap"
-  packages = ["."]
-  revision = "7554cd9344cec97297fa6649b055a8c98c2a1e55"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/hashicorp/go-multierror"
-  packages = ["."]
-  revision = "b7773ae218740a7be65057fc60b366a49b538a44"
-
-[[projects]]
-  branch = "master"
   name = "github.com/hashicorp/go.net"
   packages = [
     "internal/iana",
@@ -52,7 +40,7 @@
   branch = "master"
   name = "github.com/ikasamah/homecast"
   packages = ["."]
-  revision = "796cc8afb0b0143047b26d7d3aafb6da8357c805"
+  revision = "70de03e410ee4c3c49a0c85572f719386c722f60"
 
 [[projects]]
   name = "github.com/miekg/dns"
@@ -98,6 +86,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3e9fa5de162418b711230d91d5c370cf778b2b935dce942f39e1963e818e8943"
+  inputs-digest = "156be7993c2d44e1c45d1436e240b4039345fc72d852152cf9996201abf75774"
   solver-name = "gps-cdcl"
   solver-version = 1

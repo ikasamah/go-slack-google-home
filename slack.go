@@ -35,7 +35,7 @@ func (s *SlackBot) Run(ctx context.Context) {
 		switch ev := msg.Data.(type) {
 		case *slack.ConnectedEvent:
 			s.connectedUser = ev.Info.User
-			s.devices = homecast.LookupGoogleHome()
+			s.devices = homecast.LookupAndConnect(ctx)
 			log.Printf("[INFO] Connected: user_id=%s", s.connectedUser.ID)
 		case *slack.MessageEvent:
 			if err := s.handleMessageEvent(ctx, ev); err != nil {
@@ -61,7 +61,7 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 		if err := s.addReaction(ev, "warning"); err != nil {
 			return err
 		}
-		s.devices = homecast.LookupGoogleHome()
+		s.devices = homecast.LookupAndConnect(ctx)
 		if err := s.speak(ctx, body); err != nil {
 			s.addReaction(ev, "no_entry_sign")
 			return err
