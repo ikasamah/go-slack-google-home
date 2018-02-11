@@ -2,16 +2,16 @@
 
 A slack bot to make Google Home speak text you posted.
 
-## Init
+## Install
 ```bash
-$ dep ensure
+$ go get -u github.com/ikasamah/go-slack-google-home
 ```
 
 ## Run
 ```bash
-$ go run *.go -token <BOT_SLACK_TOKEN> -lang ja
+$ $GOPATH/bin/go-slack-google-home -token <BOT_SLACK_TOKEN> -lang ja
 ```
 
-Then, mention to bot on slack channel.
+Then, **mention** to bot on slack channel.
 
 Now your Google Home in local network speaks text you posted.
