@@ -39,6 +39,9 @@ func (s *SlackBot) Run(ctx context.Context) {
 			log.Printf("[INFO] Connected: user_id=%s", s.connectedUser.ID)
 		case *slack.MessageEvent:
 			if err := s.handleMessageEvent(ctx, ev); err != nil {
+				if err := s.addReaction(ev, "no_entry_sign"); err != nil {
+					log.Printf("[ERROR] Failed to add error reaction: %s", err)
+				}
 				log.Printf("[ERROR] Failed to handle message: %s", err)
 			}
 		case *slack.InvalidAuthEvent:
@@ -63,7 +66,6 @@ func (s *SlackBot) handleMessageEvent(ctx context.Context, ev *slack.MessageEven
 		}
 		s.devices = homecast.LookupAndConnect(ctx)
 		if err := s.speak(ctx, body); err != nil {
-			s.addReaction(ev, "no_entry_sign")
 			return err
 		}
 	}
