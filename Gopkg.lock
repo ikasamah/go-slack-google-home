@@ -2,6 +2,7 @@
 
 
 [[projects]]
+  branch = "master"
   name = "github.com/barnybug/go-cast"
   packages = [
     ".",
@@ -11,8 +12,7 @@
     "log",
     "net"
   ]
-  revision = "84bf9fc2ecfc9f99dbae3a3e1965e06db1eee6b6"
-  version = "0.0.5"
+  revision = "a92c32bbc819c2f66ea81659a2f8b40aa58e3203"
 
 [[projects]]
   name = "github.com/gogo/protobuf"
@@ -40,13 +40,13 @@
   branch = "master"
   name = "github.com/ikasamah/homecast"
   packages = ["."]
-  revision = "70de03e410ee4c3c49a0c85572f719386c722f60"
+  revision = "e744f32a576fe07092404ed1bd33be576dad1c56"
 
 [[projects]]
   name = "github.com/miekg/dns"
   packages = ["."]
-  revision = "5364553f1ee9cddc7ac8b62dce148309c386695b"
-  version = "v1.0.4"
+  revision = "83c435cc65d2862736428b9b4d07d0ab10ad3e4d"
+  version = "v1.0.5"
 
 [[projects]]
   name = "github.com/nlopes/slack"
@@ -61,7 +61,7 @@
     "ed25519",
     "ed25519/internal/edwards25519"
   ]
-  revision = "5119cf507ed5294cc409c092980c7497ee5d6fd2"
+  revision = "ae8bce0030810cf999bb2b9868ae5c7c58e6343b"
 
 [[projects]]
   branch = "master"
@@ -75,13 +75,13 @@
     "ipv6",
     "websocket"
   ]
-  revision = "f5dfe339be1d06f81b22525fe34671ee7d2c8904"
+  revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sync"
   packages = ["errgroup"]
-  revision = "fd80eb99c8f653c847d294a001bdf2a3a6f768f5"
+  revision = "1d60e4601c6fd243af51cc01ddf169918a5407ca"
 
 [solve-meta]
   analyzer-name = "dep"
